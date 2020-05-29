@@ -28,6 +28,10 @@ class Search extends React.Component {
         }
     }
 
+    _displayDetailForFilm = (idFilm) => {
+        this.props.navigation.navigate("FilmDetail", { idFilm: idFilm })
+    }
+
     _loadFilms() {
         this.setState({ isLoading: true })
         if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
@@ -49,7 +53,6 @@ class Search extends React.Component {
         this.setState({
             films: []
         }, () => {
-            console.log("Page: " + this.page + ", Total: " + this.totalPage + ", Nombre de films: " + this.state.films.length)
             this._loadFilms()
         })
     }
@@ -78,7 +81,7 @@ class Search extends React.Component {
                         }
                     }}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item}) => <FilmItem film={item}/>}
+                    renderItem={({item}) => <FilmItem film={item} displayDetailForFilm={this._displayDetailForFilm}/>}
                 />
                 {this._displayLoading()}
             </View>
@@ -88,8 +91,7 @@ class Search extends React.Component {
 
 const styles = StyleSheet.create({
     main_container: {
-        flex: 1,
-        marginTop: 20
+        flex: 1
     },
     textinput: {
         marginLeft: 5,
