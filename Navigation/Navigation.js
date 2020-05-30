@@ -6,6 +6,7 @@ import { Image, StyleSheet } from 'react-native'
 import Search from '../Components/Search'
 import FilmDetail from '../Components/FilmDetail'
 import Favorites from '../Components/Favorites'
+import Test from '../Components/Test'
 
 const SearchStackNavigator = createStackNavigator({
     Search: {
@@ -36,6 +37,10 @@ const FavoritesStackNavigator = createStackNavigator({
 
 const MoviesTabNavigator = createBottomTabNavigator(
     {
+        // Onglet de navigation pour les tests
+        /*Test: {
+            screen: Test
+        },*/
         Search: {
             screen: SearchStackNavigator,
             navigationOptions: {
