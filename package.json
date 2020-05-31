@@ -3,8 +3,10 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "localhost-android": "expo start --localhost --android",
+    "localhost-ios": "expo start --localhost --ios",
     "ios": "react-native run-ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "eject": "expo eject"
   },
   "dependencies": {
     "expo": "^37.0.0",
