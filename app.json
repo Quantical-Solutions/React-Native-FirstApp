@@ -22,7 +22,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.quanticalsolutions.mesfilms"
+    },
+    "android": {
+      "package": "com.quanticalsolutions.mesfilms"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
