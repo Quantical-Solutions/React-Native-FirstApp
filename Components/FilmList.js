@@ -13,7 +13,7 @@ class FilmList extends React.Component {
     }
 
     _displayDetailForFilm = (idFilm) => {
-        console.log("Display film " + idFilm)
+        //console.log("Display film " + idFilm)
         // On a récupéré les informations de la navigation, on peut afficher le détail du film
         this.props.navigation.navigate('FilmDetail', {idFilm: idFilm})
     }
