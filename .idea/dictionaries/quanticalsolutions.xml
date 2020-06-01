@@ -3,6 +3,7 @@
     <words>
       <w>floatingactionbutton</w>
       <w>headerrightbutton</w>
+      <w>persistor</w>
       <w>scrollview</w>
       <w>textinput</w>
     </words>
