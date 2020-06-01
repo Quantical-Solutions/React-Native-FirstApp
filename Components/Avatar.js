@@ -1,18 +1,16 @@
 import React from 'react'
 import { StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 import ImagePicker from 'react-native-image-picker'
 
 class Avatar extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            avatar: require('../Images/ic_tag_faces.png')
-        }
     }
 
-    // Arrow fx for binding
-    _avatarClicked= () => {
+    // Allow fx for binding
+    _avatarClicked = () => {
         ImagePicker.showImagePicker({}, (response) => {
             if (response.didCancel) {
                 console.log('L\'utilisateur a annulé')
@@ -23,9 +21,9 @@ class Avatar extends React.Component {
             else {
                 console.log('Photo : ', response.uri )
                 let requireSource = { uri: response.uri }
-                this.setState({
-                    avatar: requireSource
-                })
+                // On crée une action avec l'image prise et on l'envoie au store Redux
+                const action = { type: "SET_AVATAR", value: requireSource }
+                this.props.dispatch(action)
             }
         })
     }
@@ -35,7 +33,8 @@ class Avatar extends React.Component {
             <TouchableOpacity
                 style={styles.touchableOpacity}
                 onPress={this._avatarClicked}>
-                <Image style={styles.avatar} source={this.state.avatar} />
+                {/* A présent on peut récupérer notre avatar dans les props. Souvenez-vous Redux mappe notre state global et ses données dans les props de notre component. */}
+                <Image style={styles.avatar} source={this.props.avatar} />
             </TouchableOpacity>
         )
     }
@@ -44,7 +43,7 @@ class Avatar extends React.Component {
 const styles = StyleSheet.create({
     touchableOpacity: {
         margin: 5,
-        width: 100, // Pensez bien à définir une largeur ici, sinon toute la largeur de l'écran sera cliquable
+        width: 100,
         height: 100,
         justifyContent: 'center',
         alignItems: 'center'
@@ -58,4 +57,11 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Avatar
+// On mappe l'avatar aux props de notre component
+const mapStateToProps = state => {
+    return {
+        avatar: state.setAvatar.avatar
+    }
+}
+
+export default connect(mapStateToProps)(Avatar)
